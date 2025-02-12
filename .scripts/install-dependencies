@@ -1,0 +1,27 @@
+#!/bin/sh
+
+PWD=$(pwd)
+DEV_COMPOSE_FILE="$PROJECT_DIR/compose.dev.yml"
+
+cleanup() {
+  docker compose -f $DEV_COMPOSE_FILE down
+  cd $PWD
+  exit 0
+}
+
+trap "cleanup" INT
+
+which mvn || (echo "Maven not installed, exiting..." && exit 1)
+which java || (echo "Java not installed, exiting..." && exit 1)
+which npm || (echo "NodeJS not installed, exiting..." && exit 1)
+
+echo "Installing Backend dependencies"
+docker compose -f $DEV_COMPOSE_FILE up -d
+cd "$PROJECT_DIR"
+mvn clean install || (cleanup && exit 1)
+
+echo "\n\nInstalling frontend dependencies"
+cd "$PROJECT_DIR/frontend"
+npm install
+
+cleanup

@@ -1,0 +1,15 @@
+#!/bin/sh
+
+PWD=$(pwd)
+
+cleanup() {
+  cd $PWD
+  exit 0
+}
+
+trap "cleanup" INT
+
+cd "$PROJECT_DIR/frontend"
+ng serve
+
+cleanup

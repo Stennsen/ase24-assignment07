@@ -65,3 +65,4 @@ frontend/.angular/cache
 *.log
 *.log.*
 *.lck
+.direnv

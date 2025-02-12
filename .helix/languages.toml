@@ -1,0 +1,7 @@
+[language-server.angular]
+command = "angular-language-server"
+roots = ["angular.json"]
+
+[[language]]
+name = "html"
+language-servers = ["vscode-html-language-server", "angular"]
