@@ -10,6 +10,6 @@ cleanup() {
 trap "cleanup" INT
 
 cd "$PROJECT_DIR/frontend"
-ng serve
+npx ng serve
 
 cleanup

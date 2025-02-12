@@ -12,8 +12,9 @@ cleanup() {
 trap "cleanup" INT
 
 docker compose -f $DEV_COMPOSE_FILE up -d
+sleep 5
 
 cd "$PROJECT_DIR/application"
-mvn mvn spring-boot:run -Dspring-boot.run.profiles=dev
+mvn spring-boot:run -Dspring-boot.run.profiles=dev
 
 cleanup

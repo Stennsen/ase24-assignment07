@@ -17,6 +17,7 @@ which npm || (echo "NodeJS not installed, exiting..." && exit 1)
 
 echo "Installing Backend dependencies"
 docker compose -f $DEV_COMPOSE_FILE up -d
+sleep 5
 cd "$PROJECT_DIR"
 mvn clean install || (cleanup && exit 1)
 
