@@ -1,0 +1,3 @@
+#!/bin/sh
+set -eo pipefail
+npx ng $*
