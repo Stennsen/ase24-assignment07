@@ -1,7 +1,10 @@
-[language-server.angular]
-command = "angular-language-server"
-roots = ["angular.json"]
+[language-server]
+angular-ls = {command = "ngserver", args = ["--stdio", "--tsProbeLocations", ".", "--ngProbeLocations", ".",]}
 
 [[language]]
-name = "html"
-language-servers = ["vscode-html-language-server", "angular"]
+name ="html"
+language-servers = ["angular-ls","vscode-html-language-server"]
+
+[[language]]
+name = "typescript"
+language-servers = ["angular-ls","typescript-language-server"]

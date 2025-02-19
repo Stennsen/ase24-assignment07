@@ -22,12 +22,13 @@
             #pkgs.gradle
             jdk
             maven
-            nodejs_23
+            nodejs_22
 
             nil
             jdt-language-server
             typescript-language-server
             angular-language-server
+            vscode-langservers-extracted
           ];
           NIX_LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
             pkgs.stdenv.cc.cc
