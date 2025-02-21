@@ -39,6 +39,10 @@ export class BoardComponent {
   }
 
   groupTasks(tasks: Array<TaskDto>) {
+    this.todo = [];
+    this.doing = [];
+    this.done = [];
+
     tasks.forEach((task: TaskDto) => {
       switch(task.status) {
         case TaskDto.StatusEnum.TODO:
@@ -57,17 +61,34 @@ export class BoardComponent {
   }
 
   drop(event: CdkDragDrop<TaskDto[]>) {
+    const target_array = event.container.data;
+    const origin_array = event.previousContainer.data;
+    const origin_index = event.previousIndex - 1;
+    const moving_task = origin_array[origin_index];
+    
     if (event.previousContainer === event.container) {      // container stays in current list
-      console.log("nothing was moved");
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {                                                // container moves from one list to another
-      // TODO: update backend on success update state; on error show error notification
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex,
-      );
+      switch (target_array) {
+        case this.todo:
+          if (moving_task.id) {
+            moving_task.status = TaskDto.StatusEnum.TODO;
+            this.task_backend.updateTask(moving_task.id, moving_task).then(()=> this.update());
+          }
+          break;
+        case this.doing:
+          if (moving_task.id) {
+            moving_task.status = TaskDto.StatusEnum.DOING;
+            this.task_backend.updateTask(moving_task.id, moving_task).then(()=>this.update());
+          }
+          break;
+        case this.done:
+          if (moving_task.id) {
+            moving_task.status = TaskDto.StatusEnum.DONE;
+            this.task_backend.updateTask(moving_task.id, moving_task).then(()=>this.update());
+          }
+          break;
+      }
     }
   }
 }
