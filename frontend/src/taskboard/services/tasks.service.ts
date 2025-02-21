@@ -25,8 +25,18 @@ export class TasksService {
     return firstValueFrom(this.httpClient.get<Array<TaskDto>>(url));
   }
 
-  public updateTask(id: string, updated_task: TaskDto): E.Either<Error, TaskDto> {
+  public updateTask(id: string, updated_task: TaskDto): Promise<TaskDto> {
     const url = this.baseUrl;
-    firstValueFrom(this.httpClient.put(`${this.baseUrl}/${id}`,updated_task))
+    return firstValueFrom(
+      this.httpClient.put<TaskDto>(`${this.baseUrl}/${id}`,updated_task)
+    );
   }
+
+  public deleteTask(id: string): Promise<void> {
+    const url = this.baseUrl;
+    return firstValueFrom(
+      this.httpClient.delete<void>(`${this.baseUrl}/${id}`)
+    );
+  }
+
 }
