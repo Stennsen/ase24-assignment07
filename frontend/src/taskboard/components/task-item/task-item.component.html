@@ -1,0 +1,13 @@
+@if (task) {
+<div class="task-item">
+  <div>{{task.title}}</div>
+  <div>{{ task.description }}</div>
+  <div>{{task.assignee?.name}}</div>
+</div>
+} @else {
+<div class="task-header">
+  <div>Title</div>
+  <div>Description</div>
+  <div>Assignee</div>
+</div>
+}

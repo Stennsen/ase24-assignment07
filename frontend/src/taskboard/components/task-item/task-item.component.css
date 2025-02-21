@@ -1,0 +1,17 @@
+.task-item {
+  background: white;
+  display: grid;
+  grid-template-columns: repeat(3, 33%);
+  padding: 1rem;
+  place-items: center;
+  border-style: solid;
+  margin-top: 1rem;
+}
+
+.task-header {
+  display: grid;
+  grid-template-columns: repeat(3, 33%);
+  place-items: center;
+  background: lightgrey;
+  padding: 1rem;
+}

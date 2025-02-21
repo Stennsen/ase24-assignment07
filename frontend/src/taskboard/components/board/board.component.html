@@ -3,8 +3,9 @@
     <h2>TODO</h2>
 
     <div cdkDropList [cdkDropListData]="todo" class="task-list" (cdkDropListDropped)="drop($event)">
+      <taskboard-task-item class="board-task-item" cdkDrag></taskboard-task-item>
       @for (item of todo; track item) {
-      <div class="task-item" cdkDrag>{{item.title}}, {{ item.description }}, {{item.assignee?.name}}</div>
+      <taskboard-task-item [task]="item" class="board-task-item" cdkDrag></taskboard-task-item>
       }
     </div>
   </div>
@@ -13,8 +14,9 @@
     <h2>DOING</h2>
 
     <div cdkDropList [cdkDropListData]="doing" class="task-list" (cdkDropListDropped)="drop($event)">
+      <taskboard-task-item class="board-task-item" cdkDrag></taskboard-task-item>
       @for (item of doing; track item) {
-      <div class="task-item" cdkDrag>{{item.title}}, {{ item.description }}, {{item.assignee?.name}}</div>
+      <taskboard-task-item [task]="item" class="board-task-item" cdkDrag></taskboard-task-item>
       }
     </div>
   </div>
@@ -23,8 +25,9 @@
     <h2>DONE</h2>
 
     <div cdkDropList [cdkDropListData]="done" class="task-list" (cdkDropListDropped)="drop($event)">
+      <taskboard-task-item class="board-task-item" cdkDrag></taskboard-task-item>
       @for (item of done; track item) {
-      <div class="task-item" cdkDrag>{{item.title}}, {{ item.description }}, {{item.assignee?.name}}</div>
+      <taskboard-task-item [task]="item" class="board-task-item" cdkDrag></taskboard-task-item>
       }
     </div>
   </div>

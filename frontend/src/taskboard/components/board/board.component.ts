@@ -10,10 +10,11 @@ import {
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import { TaskDto } from '../../client/model/taskDto';
 import { TasksService } from '../../services/tasks.service'; 
+import { TaskItemComponent } from '../task-item/task-item.component'; 
 
 @Component({
   selector: 'taskboard-board',
-  imports: [CdkDropListGroup, CdkDropList, CdkDrag, ScrollingModule],
+  imports: [CdkDropListGroup, CdkDropList, CdkDrag, ScrollingModule,TaskItemComponent],
   //changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './board.component.html',
   styleUrl: './board.component.css',
