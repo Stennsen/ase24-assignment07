@@ -1,7 +1,7 @@
 .task-item {
   background: white;
   display: grid;
-  grid-template-columns: repeat(3, 33%);
+  grid-template-columns: 15% 70% 15%;
   padding: 1rem;
   place-items: center;
   border-style: solid;
@@ -10,7 +10,7 @@
 
 .task-header {
   display: grid;
-  grid-template-columns: repeat(3, 33%);
+  grid-template-columns: 15% 70% 15%;
   place-items: center;
   background: lightgrey;
   padding: 1rem;

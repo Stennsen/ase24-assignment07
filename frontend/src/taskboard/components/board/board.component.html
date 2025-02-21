@@ -1,3 +1,7 @@
+<section class="search">
+  <input type="text" placeholder="Filter the Taskboard" #filter>
+  <button type="button" class="primary" (click)="updateFilter(filter.value)">Filter</button>
+</section>
 <div cdkDropListGroup class="board">
   <div class="task-status">
     <h2>TODO</h2>

@@ -11,16 +11,21 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 import { TaskDto } from '../../client/model/taskDto';
 import { TasksService } from '../../services/tasks.service'; 
 import { TaskItemComponent } from '../task-item/task-item.component'; 
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+
 
 @Component({
   selector: 'taskboard-board',
-  imports: [CdkDropListGroup, CdkDropList, CdkDrag, ScrollingModule,TaskItemComponent],
+  imports: [MatButtonModule,MatInputModule,CdkDropListGroup, CdkDropList, CdkDrag, ScrollingModule,TaskItemComponent],
   //changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './board.component.html',
   styleUrl: './board.component.css',
   providers: [ TasksService ]
 })
 export class BoardComponent {
+  filter: string = "";
+  
   todo: Array<TaskDto> = [];
   doing: Array<TaskDto> = [];
   done: Array<TaskDto> = [];
@@ -35,7 +40,31 @@ export class BoardComponent {
   
   update() {
     this.task_backend.getTasks()
-      .then(all_tasks => this.groupTasks(all_tasks));
+      .then(all_tasks => {
+        const filtered_tasks = this.filterTasks(all_tasks);
+        console.log(filtered_tasks);
+        this.groupTasks(filtered_tasks)});
+  }
+
+  updateFilter(filter_text: string) {
+    this.filter = filter_text;
+    this.update();
+  }
+
+  filterTasks(tasks: Array<TaskDto>): Array<TaskDto> {
+    if (this.filter == "") {
+      return tasks;
+    }
+    
+    return tasks.filter((task: TaskDto)=>{
+      const title_found = task.title.search(this.filter)>=0;
+      const description_found = task.description.search(this.filter)>=0;
+      let assignee_found = false;
+      if (task.assignee) {
+        assignee_found = task.assignee.name.search(this.filter)>=0
+      }
+      return ( title_found||description_found||assignee_found );
+    })
   }
 
   groupTasks(tasks: Array<TaskDto>) {
