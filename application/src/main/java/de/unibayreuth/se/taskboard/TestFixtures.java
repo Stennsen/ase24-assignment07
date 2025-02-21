@@ -19,7 +19,14 @@ public class TestFixtures {
     private static final List<Task> TASKS = List.of(
             new Task("Task 1", "Description 1"),
             new Task("Task 2", "Description 2"),
-            new Task("Task 3", "Description 3")
+            new Task("Task 3", "Description 3"),
+            new Task("Task 4", "abc"),
+            new Task("Lorem", "Ipsum solor"),
+            new Task("foo", "bar"),
+            new Task("Hello World", "Write Hello World in Ook"),
+            new Task("Task 8", "Description 3"),
+            new Task("Task 9", "Description 3"),
+            new Task("Task 10", "Description 3")
     );
 
     public static List<User> getUsers() {
